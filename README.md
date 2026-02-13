@@ -1,33 +1,33 @@
-# Schaltplan: ESP32 DevKit V1 & 74HC4051
+# Wiring Diagram: ESP32 DevKit V1 & 74HC4051
 
-## 1. Stromversorgung (Power)
+## 1. Power Supply
 
-- V5 / VIN (am ESP32): Nicht benötigt, wenn USB-C angeschlossen ist.
+- V5 / VIN (on ESP32): Not required if USB-C is connected.
 - 3V3 (ESP32) → VCC (Mux Pin 16)
-- GND (ESP32) → GND (Mux Pin 8) UND VEE (Mux Pin 7)
-- GND (ESP32) → EN (Mux Pin 6 / Enable) — Muss auf GND liegen, damit der Mux arbeitet.
+- GND (ESP32) → GND (Mux Pin 8) AND VEE (Mux Pin 7)
+- GND (ESP32) → EN (Mux Pin 6 / Enable) — Must be connected to GND for the Mux to operate.
 
-## 2. Adress-Steuerung (Welcher Kanal wird gemessen?)
+## 2. Address Control (Which channel is being measured?)
 
 - GPIO 25 (ESP32) → S0 / A (Mux Pin 11)
 - GPIO 26 (ESP32) → S1 / B (Mux Pin 10)
 - GPIO 27 (ESP32) → S2 / C (Mux Pin 9)
 
-## 3. Mess-Pfad (Analog)
+## 3. Measurement Path (Analog)
 
-Hier wird der Widerstand der Wand in Spannung übersetzt:
+Here, the wall resistance is translated into voltage:
 
 - Z / SIG (Mux Pin 3) → GPIO 34 (ESP32)
-- 100kΩ Widerstand: Ein Bein an GPIO 34, das andere Bein an GND.
+- 100kΩ Resistor: One leg to GPIO 34, the other to GND.
 
-## 4. Die Wand-Sensoren (Schrauben)
+## 4. Wall Sensors (Screws)
 
-- Schraube A (an jeder Messstelle): Alle werden direkt mit 3V3 am ESP32 verbunden.
-- Schraube B (Messstelle 1) → Y0 (Mux Pin 13)
-- Schraube B (Messstelle 2) → Y1 (Mux Pin 14)
+- Screw A (at each measurement point): All are connected directly to 3V3 on the ESP32.
+- Screw B (Measurement Point 1) → Y0 (Mux Pin 13)
+- Screw B (Measurement Point 2) → Y1 (Mux Pin 14)
 - ... (Y2=Pin 15, Y3=Pin 12, Y4=Pin 1, Y5=Pin 5, Y6=Pin 2, Y7=Pin 4)
 
-## 5. Versuch einer schematischen Darstellung
+## 5. Schematic Representation Attempt
 
 ```mermaid
 ---
@@ -54,13 +54,13 @@ flowchart TB
   s22 --- MY1
   s31 --- 33V
   s32 --- MY2
- 
+  
   GND --- MGND
   GND --- MPIN7
   GND --- MGND
   GND --- MPIN6
 
-  RI([Widerstand 100kOhm])
+  RI([Resistor/Widerstand 100kOhm])
 
   subgraph esp32 [ESP32 DevKit]
     direction LR
@@ -74,7 +74,7 @@ flowchart TB
       GPIO25
       GPIO26
       GPIO27
-      GPIO34
+      GPIO34  
     end
   end
 
@@ -100,7 +100,7 @@ flowchart TB
     end
   end
 
-  subgraph sensors[Schrauben/Sensoren]
+  subgraph sensors[Screws/Schrauben/Sensors]
     direction LR
     s11 -. Sensor 1 .- s12
     s21 -. Sensor 2 .- s22
