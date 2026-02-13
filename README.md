@@ -59,6 +59,16 @@ Here, the wall resistance is translated into voltage:
 
 ### 5. Schematic Representation Attempt
 
+grey: GND
+
+red: Power (3,3V or 5V)
+
+orange: channel control
+
+blue: backchannel measurement 
+
+green/violet: I2C controls
+
 ```mermaid
 ---
 config:
