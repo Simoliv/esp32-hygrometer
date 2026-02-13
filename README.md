@@ -66,7 +66,7 @@ config:
     curve: basis
 ---
 
-flowchart TB
+flowchart LR
   33V --- MPIN16
 
   GPIO25 --- MPIN11
@@ -103,6 +103,10 @@ flowchart TB
   DI-GND --- GND
   DI-SDA --- GPIO21
   DI-SCL --- GPIO22
+
+  %% link 25
+  sN1 --- 33V
+  sN2 --- MYN
 
   subgraph esp32 [ESP32 DevKit]
     direction LR
@@ -168,7 +172,7 @@ flowchart TB
     sN1 -. Sensor N .- sN2
   end
 
-  linkStyle 0,7,9,11,17,21 stroke:#FF0000,stroke-width:2px;
+  linkStyle 0,7,9,11,17,21,25 stroke:#FF0000,stroke-width:2px;
   linkStyle 8,10,12 stroke:#00F,stroke-width:2px;
   linkStyle 6,13,14,15,16,18,22 stroke:#b9bec0,stroke-width:2px;
   linkStyle 1,2,3 stroke:#f7ad00,stroke-width:2px;
